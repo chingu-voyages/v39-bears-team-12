@@ -1,0 +1,30 @@
+{
+  "name": "test-tracker",
+  "version": "1.0.0",
+  "description": "A test tracking application that allows users to run and track tests through a UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v39-bears-team-12.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v39-bears-team-12/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v39-bears-team-12#readme",
+  "dependencies": {
+    "eslint": "^8.13.0",
+    "prettier": "^2.6.2",
+    "typescript": "4.5"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0"
+  }
+}
