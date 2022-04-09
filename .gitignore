@@ -7,3 +7,6 @@ logs
 
 # dotenv environment variable files
 .env
+
+# ouptut directories
+dist/
