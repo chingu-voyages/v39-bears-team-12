@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html --open",
+    "start": "parcel src/index.html --open",
+    "lint": "eslint src/**/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,5 +13,9 @@
   "devDependencies": {
     "@types/react-dom": "^18.0.0",
     "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
