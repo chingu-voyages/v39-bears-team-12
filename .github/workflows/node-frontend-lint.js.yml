@@ -28,5 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: cd frontend
+    - run: pwd
+    - run: ls
     - run: npm ci
     - run: npm run lint
