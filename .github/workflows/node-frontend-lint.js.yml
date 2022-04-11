@@ -26,6 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - run: cd v39-bears-team-12
     - run: npm ci
     - run: cd frontend
     - run: pwd
