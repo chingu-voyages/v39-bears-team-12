@@ -31,4 +31,5 @@ jobs:
       working-directory: ./frontend
       run: npm ci
     - name: run frontend lint
+      working-directory: ./frontend
       run: npm run lint
