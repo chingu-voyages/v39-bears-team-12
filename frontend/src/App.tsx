@@ -1,5 +1,11 @@
-import * as React from 'react'
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { AppRoutes } from './routes'
+import { Navigation } from './components'
 
-const App = () => <h1>Hi team bears rawr</h1>
-
-export default App
+export const App = () => (
+  <Router>
+    <AppRoutes />
+    <Navigation />
+  </Router>
+)
