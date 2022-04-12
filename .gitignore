@@ -13,3 +13,16 @@ dist/
 
 # parcel
 .cache
+.parcel.cache
+frontend/.parcel-cache/65a5fa4d8fa0e548
+frontend/.parcel-cache/65f824a6a2550953.txt
+frontend/.parcel-cache/6ba18906515ceadc
+frontend/.parcel-cache/876a06f209f62937
+frontend/.parcel-cache/8e38eec4763d0588
+frontend/.parcel-cache/9c4db7f2c4a2647c
+frontend/.parcel-cache/c93a3eeff11ca56f
+frontend/.parcel-cache/d0c49832511ab0e3.txt
+frontend/.parcel-cache/data.mdb
+frontend/.parcel-cache/ebd42413192a726d
+frontend/.parcel-cache/fe828db8d0256053
+frontend/.parcel-cache/lock.mdb
