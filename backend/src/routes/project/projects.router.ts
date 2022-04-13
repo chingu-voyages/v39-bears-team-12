@@ -3,5 +3,5 @@ import * as express from 'express'
 
 export const projectRouter = express.Router()
 
-projectRouter.post('/new', createProject)
+projectRouter.post('/', createProject)
 projectRouter.get('/:id', getProjectById)

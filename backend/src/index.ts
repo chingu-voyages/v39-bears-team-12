@@ -1,7 +1,7 @@
 import express = require('express')
 import { userRouter } from './routes/user/users.router'
 import { projectRouter } from './routes/project/projects.router'
-import { milestoneRouter } from './routes/milestone/milestone.router'
+import { milestoneRouter } from './routes/milestone/milestones.router'
 import { testRouter } from './routes/tests/tests.router'
 
 const app = express()
