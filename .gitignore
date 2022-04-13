@@ -13,5 +13,4 @@ dist/
 
 # parcel
 .cache
-frontend/.parcel-cache
-
+.parcel-cache
