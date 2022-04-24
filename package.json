@@ -4,6 +4,9 @@
   "description": "A test tracking application that allows users to run and track tests through a UI",
   "main": "index.js",
   "scripts": {
+    "server": "npm run server --workspace=backend",
+    "client": "npm start --workspace=frontend",
+    "dev": "npm run server & npm run client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,5 +30,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "nodemon": "^2.0.15"
-  }
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
 }
