@@ -1,4 +1,4 @@
-import { Organisation } from '../types/organisation'
+import { Organisation } from '../../types/organisation'
 import { users } from './users'
 import { projects } from './projects'
 

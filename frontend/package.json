@@ -2,9 +2,9 @@
   "name": "@test-tracker/frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html",
     "lint": "eslint src/**/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
