@@ -1,5 +1,4 @@
 import express = require('express')
-import path from 'path'
 import { userRouter } from './routes/user/users.router'
 import { projectRouter } from './routes/project/projects.router'
 import { milestoneRouter } from './routes/milestone/milestones.router'
