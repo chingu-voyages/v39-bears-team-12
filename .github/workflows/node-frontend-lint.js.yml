@@ -31,7 +31,7 @@ jobs:
       working-directory: ./frontend
       run: npm ci
     - name: which directory
-      run: echo pwd
+      run: pwd
     - name: run frontend lint
       working-directory: ./frontend
       run: npm run lint
