@@ -6,6 +6,7 @@
   "scripts": {
     "server": "npm run server --workspace=backend",
     "client": "npm start --workspace=frontend",
+    "lint:client": "npm run lint --workspace=frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
