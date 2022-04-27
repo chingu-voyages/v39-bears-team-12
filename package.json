@@ -4,6 +4,10 @@
   "description": "A test tracking application that allows users to run and track tests through a UI",
   "main": "index.js",
   "scripts": {
+    "server": "npm run server --workspace=backend",
+    "client": "npm start --workspace=frontend",
+    "lint:client": "npm run lint --workspace=frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +21,7 @@
   },
   "homepage": "https://github.com/chingu-voyages/v39-bears-team-12#readme",
   "dependencies": {
+    "concurrently": "^7.1.0",
     "eslint": "^8.13.0",
     "prettier": "^2.6.2",
     "typescript": "4.5"
@@ -25,6 +30,11 @@
     "@typescript-eslint/eslint-plugin": "^5.18.0",
     "@typescript-eslint/parser": "^5.18.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0"
-  }
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
 }
