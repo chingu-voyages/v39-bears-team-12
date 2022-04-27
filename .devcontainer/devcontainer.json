@@ -1,0 +1,6 @@
+{
+  "name": "test-tracker",
+  "dockerFile": "./Dockerfile",
+  "appPort": [4000],
+  "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+}
