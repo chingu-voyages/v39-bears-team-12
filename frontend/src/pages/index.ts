@@ -1,3 +1,5 @@
 export * from './Home'
 export * from './Organisation'
 export * from './Projects'
+export * from './Register'
+export * from './Login'
