@@ -1,14 +1,25 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Home, Organisation, Projects } from '../pages'
-import { urls } from '../urls'
+import Login from '../pages/Login'
+import NotFound from '../pages/NotFound'
+import Register from '../pages/Register'
+import { adminUrls } from '../urls'
+import AdminLayout from '../utils/AdminLayout'
+import AuthLayout from '../utils/AuthLayout'
 
 export const AppRoutes = () => (
   <Routes>
-    <Route path={'/'} element={<Home />} />
-    <Route path={urls.home || '/'} element={<Home />} />
-    <Route path={urls.organisation} element={<Organisation />} />
-    <Route path={urls.projects} element={<Projects />} />
-    <Route path="*" element={<div>404</div>} />
+    <Route element={<AdminLayout />}>
+      <Route path={'/'} element={<Home />} />
+      <Route path={adminUrls.home} element={<Home />} />
+      <Route path={adminUrls.organisation} element={<Organisation />} />
+      <Route path={adminUrls.projects} element={<Projects />} />
+    </Route>
+    <Route element={<AuthLayout />}>
+      <Route path={'/login'} element={<Login />} />
+      <Route path={'/register'} element={<Register />} />
+    </Route>
+    <Route path="*" element={<NotFound />} />
   </Routes>
 )

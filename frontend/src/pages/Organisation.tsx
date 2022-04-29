@@ -20,7 +20,9 @@ export const Organisation = () => {
         <h2>{organisation.description}</h2>
         <div>Users</div>
         {organisation.users.map((user) => (
-          <h3 className="ml-2 font-bold text-xl">{user.name}</h3>
+          <h3 className="ml-2 font-bold text-xl" key={user.id}>
+            {user.name}
+          </h3>
         ))}
       </>
     )
