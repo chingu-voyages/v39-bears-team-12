@@ -9,7 +9,7 @@ export const Organisation = () => {
     const json = await res.json()
     setOrganisation(json)
   }
-  const [statuses, setStatuses] = useState(['passed', 'failed', 'pending'])
+
   useEffect(() => {
     getData()
   }, [])
@@ -25,17 +25,6 @@ export const Organisation = () => {
           <h3 className="ml-2 font-bold text-xl" key={user.id}>
             {user.name}
           </h3>
-        ))}
-        {statuses.map((status, index) => (
-          <div className="mb-1">
-            <Status
-              key={index}
-              status={status as TStatus}
-              onUpdate={(newStatus) =>
-                setStatuses((statuses) => statuses.map((s, i) => (i === index ? newStatus : s)))
-              }
-            />
-          </div>
         ))}
       </>
     )

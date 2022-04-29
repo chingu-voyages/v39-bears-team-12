@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Home, Organisation, Projects } from '../pages'
+import { ComponentExamples } from '../pages/ComponentExamples'
 import Login from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import Register from '../pages/Register'
@@ -15,6 +16,7 @@ export const AppRoutes = () => (
       <Route path={adminUrls.home} element={<Home />} />
       <Route path={adminUrls.organisation} element={<Organisation />} />
       <Route path={adminUrls.projects} element={<Projects />} />
+      <Route path={adminUrls.components} element={<ComponentExamples />} />
     </Route>
     <Route element={<AuthLayout />}>
       <Route path={'/login'} element={<Login />} />
