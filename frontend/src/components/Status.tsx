@@ -20,7 +20,7 @@ export const Status = ({
     setShowOptions(false)
   }
   const ref = useRef()
-  useOnClickOutside(ref, () => handleClose())
+  useOnClickOutside(ref, handleClose)
 
   return (
     <div ref={ref}>
