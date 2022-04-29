@@ -5,7 +5,6 @@ import { ComponentExamples } from '../pages/ComponentExamples'
 import Login from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import Register from '../pages/Register'
-import { adminUrls } from '../urls'
 import AdminLayout from '../utils/AdminLayout'
 import AuthLayout from '../utils/AuthLayout'
 
@@ -13,10 +12,10 @@ export const AppRoutes = () => (
   <Routes>
     <Route element={<AdminLayout />}>
       <Route path={'/'} element={<Home />} />
-      <Route path={adminUrls.home} element={<Home />} />
-      <Route path={adminUrls.organisation} element={<Organisation />} />
-      <Route path={adminUrls.projects} element={<Projects />} />
-      <Route path={adminUrls.components} element={<ComponentExamples />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/organisation" element={<Organisation />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/components" element={<ComponentExamples />} />
     </Route>
     <Route element={<AuthLayout />}>
       <Route path={'/login'} element={<Login />} />

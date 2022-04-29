@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Organisation as OrganisationType } from '../../../types/organisation'
-import { Status, TStatus } from '../components/Status'
 
 export const Organisation = () => {
   const [organisation, setOrganisation] = useState<OrganisationType>()
