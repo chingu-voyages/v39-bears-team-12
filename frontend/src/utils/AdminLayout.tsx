@@ -6,7 +6,7 @@ const AdminLayout = () => (
     <div className="flex flex-col">
       <Sidebar />
     </div>
-    <div className="flex flex-col flex-grow min-h-full bg-grey p-10">
+    <div className="flex flex-col flex-grow min-h-full bg-grey p-10 items-start">
       <Outlet />
     </div>
   </div>
