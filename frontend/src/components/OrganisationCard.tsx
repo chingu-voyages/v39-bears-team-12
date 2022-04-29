@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Organisation } from '../../../types/organisation'
+import { Organisation as OrganistionType } from '../../../types/organisation'
 import { Organisation } from '../pages'
 
 const avatarSizeMap = (size: 'sm' | 'md' | 'lg') => {
@@ -47,11 +47,11 @@ const Modal = ({ name, description }: { name: string; description: string }) => 
 
 export const OrganisationCard = () => {
   const [showModal, setShowModal] = useState(false)
-  const [organisation, setOrganisation] = useState<Organisation>()
+  const [organisation, setOrganisation] = useState<OrganistionType>()
 
   const getOrgData = async () => {
     const res = await fetch('api/organisation/1')
-    const json: Organisation = await res.json()
+    const json: OrganistionType = await res.json()
     setOrganisation(json)
   }
 
