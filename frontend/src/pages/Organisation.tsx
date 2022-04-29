@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Organisation as OrganisationType } from '../../../types/organisation'
-import { Status } from '../components/Status'
+import { Status, TStatus } from '../components/Status'
 
 export const Organisation = () => {
   const [organisation, setOrganisation] = useState<OrganisationType>()
@@ -25,9 +25,11 @@ export const Organisation = () => {
             {user.name}
           </h3>
         ))}
-        <Status status="passed" />
-        <Status status="failed" />
-        <Status status="pending" />
+        {['passed', 'failed', 'pending'].map((status) => (
+          <div className="mb-1">
+            <Status status={status as TStatus} />
+          </div>
+        ))}
       </>
     )
   }
