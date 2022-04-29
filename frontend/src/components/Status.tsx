@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import useOnClickOutside from '../hooks/useOnClickOutside'
 export type TStatus = 'passed' | 'failed' | 'pending'
 
 const colorMap = {
@@ -15,10 +16,16 @@ export const Status = ({
   onUpdate: (newStatus: TStatus) => void
 }) => {
   const [showOptions, setShowOptions] = useState(false)
+  const handleClose = () => {
+    setShowOptions(false)
+  }
+  const ref = useRef()
+  useOnClickOutside(ref, () => handleClose())
+
   return (
-    <>
+    <div ref={ref}>
       <div
-        className={`${colorMap[status]} inline-flex flex-wrap justify-between items-center rounded-full capitalize cursor-pointer py-2 px-4 w-28 relative`}
+        className={`${colorMap[status]} flex flex-wrap justify-between items-center rounded-full capitalize cursor-pointer py-2 px-4 w-28 relative`}
         onClick={() => setShowOptions((show) => !show)}
       >
         <div className="text-white font-semibold text-sm">{status}</div>
@@ -35,7 +42,7 @@ export const Status = ({
           }}
         />
       )}
-    </>
+    </div>
   )
 }
 
