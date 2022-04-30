@@ -13,7 +13,9 @@ export const AppRoutes = () => (
     <Route element={<AdminLayout />}>
       <Route path={'/'} element={<Home />} />
       <Route path={adminUrls.home} element={<Home />} />
-      <Route path={adminUrls.organisation} element={<Organisation />} />
+      <Route path={`${adminUrls.organisation}`}>
+        <Route path=":id" element={<Organisation />} />
+      </Route>
       <Route path={adminUrls.projects} element={<Projects />} />
     </Route>
     <Route element={<AuthLayout />}>
