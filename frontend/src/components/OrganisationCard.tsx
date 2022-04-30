@@ -45,7 +45,7 @@ const Modal = ({
   id: string
   onClose: () => void
 }) => (
-  <div className="w-[400px] absolute top-10 right-10 rounded-lg border-2 border-slate-200 shadow-lg p-6 flex flex-col items-center gap-4">
+  <div className="w-[400px] absolute top-10 right-10 rounded-lg border-2 bg-white border-slate-200 shadow-lg p-6 flex flex-col items-center gap-4">
     <Avatar letter="G" size="lg" />
     <div className="text-lg font-bold">{name}</div>
     <div className="text-md text-slate-600">{description}</div>

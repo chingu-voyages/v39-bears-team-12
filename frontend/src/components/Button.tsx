@@ -32,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   <button
     className={` ${getVariant(
       variant
-    )} py-2 px-4 rounded focus:outline-none focus:shadow-outline ${styles}`}
+    )} py-2 px-4 rounded focus:outline-none focus:shadow-outline ${styles} min-w-8 flex items-center gap-2 w-fit`}
     type="button"
     onClick={onClick}
   >

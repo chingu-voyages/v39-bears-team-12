@@ -9,6 +9,15 @@ export const Organisation = () => {
   const { organisation, getOrganisation, updateOrganisation } = useContext(AppContext)
 
   const [organisationEdit, setOrganisationEdit] = useState(organisation)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleUpdate = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      updateOrganisation(organisationEdit)
+      setIsLoading(false)
+    }, 1500)
+  }
 
   useEffect(() => {
     getOrganisation(id)
@@ -54,8 +63,10 @@ export const Organisation = () => {
               </Button>
               <Button
                 variant="primary"
-                onClick={() => updateOrganisation(organisationEdit)}
-                Icon={<i className="fa-solid fa-circle-notch"></i>}
+                onClick={() => handleUpdate()}
+                Icon={
+                  isLoading ? <i className="fa-solid fa-circle-notch animate-spin"></i> : undefined
+                }
               >
                 Update
               </Button>
