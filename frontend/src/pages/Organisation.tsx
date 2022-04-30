@@ -8,6 +8,7 @@ export const Organisation = () => {
     const json = await res.json()
     setOrganisation(json)
   }
+
   useEffect(() => {
     getData()
   }, [])

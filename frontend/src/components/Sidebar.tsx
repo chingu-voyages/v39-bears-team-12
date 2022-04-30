@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { adminUrls } from '../urls'
+import { navItems } from '../urls'
 
 const Sidebar = () => {
   const logOut = () => {
@@ -14,13 +14,16 @@ const Sidebar = () => {
             <span className="text-gray-600 dark:text-gray-300 text-2xl font-bold">TestIt</span>
           </div>
           <nav className="mt-10 px-6 ">
-            {Object.entries(adminUrls).map(([key, value]) => (
+            {navItems.map(({ name, path, Icon }) => (
               <Link
                 className="hover:text-orange flex items-center p-2 my-6 transition-colors duration-200 text-gray-600 rounded-lg capitalize"
-                to={value}
-                key={key}
+                to={path}
+                key={name}
               >
-                <span className="text-lg font-normal">{key}</span>
+                <div className="flex items-center">
+                  <div className="mr-1">{Icon}</div>
+                  <span className="text-lg font-normal">{name}</span>
+                </div>
               </Link>
             ))}
             <Link
