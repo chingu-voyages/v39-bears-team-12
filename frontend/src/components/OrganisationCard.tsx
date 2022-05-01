@@ -73,7 +73,7 @@ export const OrganisationCard = () => {
 
   if (organisation)
     return (
-      <div className="absolute top-0 right-0 m-5">
+      <div className="absolute top-0 right-0 m-5 z-10">
         <div>
           <Avatar
             letter={organisation.name[0] || ''}
