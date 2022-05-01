@@ -8,4 +8,5 @@ export const navItems: TNavItem[] = [
   { name: 'organisation', path: '/organisation', Icon: undefined },
   { name: 'projects', path: '/projects', Icon: undefined },
   { name: 'Example Components', path: '/components', Icon: undefined },
+  { name: 'Test case', path: '/test-case', Icon: undefined },
 ]
