@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../contexts'
 
 const Login = () => {
-  const { getOrganisation } = useContext(AppContext)
+  const { handleLogin } = useContext(AppContext)
   const [orgId, setOrgId] = useState('')
   return (
     <div className="bg-white p-5 max-w-lg mx-auto rounded shadow-sm">
@@ -26,7 +26,7 @@ const Login = () => {
               className="bg-orange-500 text-sm hover:bg-orange-600 cursor-pointer font-regular text-white px-4 py-2 rounded uppercase mb-5"
               onClick={() => {
                 if (orgId.length) {
-                  getOrganisation(orgId)
+                  handleLogin(orgId)
                 }
               }}
             >

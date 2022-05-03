@@ -10,12 +10,14 @@ type AppContextType = {
   updateOrganisation: (updates: Partial<OrganisationType>) => void
   getTestCases: () => void
   handleLogOut: () => void
+  handleLogin: (id: string) => void
 }
 
 export const AppContext = createContext({} as AppContextType)
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [organisation, setOrganisation] = useState<OrganisationType>()
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [testCases, setTestCases] = useState<Test[]>()
   const navigate = useNavigate()
 
@@ -37,12 +39,21 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  const handleLogOut = () => setOrganisation(undefined)
+  const handleLogOut = () => {
+    setOrganisation(undefined)
+    setIsLoggedIn(false)
+  }
+
+  const handleLogin = async (id: string) => {
+    console.log('sdlfknersf')
+    await getOrganisation(id)
+    setIsLoggedIn(true)
+  }
 
   useEffect(() => {
-    if (!organisation) navigate('login')
-    else navigate('/projects')
-  }, [organisation])
+    if (!isLoggedIn) navigate('/login')
+    else navigate('/home')
+  }, [isLoggedIn])
 
   return (
     <AppContext.Provider
@@ -53,6 +64,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         testCases,
         getTestCases,
         handleLogOut,
+        handleLogin,
       }}
     >
       {children}
