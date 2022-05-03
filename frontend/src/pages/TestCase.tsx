@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Card from '../components/Card'
-const TestCase = () => (
-  <Card title="Test case" subtitle="Short description">
-    <Card title="Prerequisites">You must have registered account with confirmed email address</Card>
+import { AppContext } from '../contexts'
+const TestCases = () => {
+  const { getTestCases, testCases } = useContext(AppContext)
 
-    <Card title="Steps">
-      1. go to the login page, 2. enter your credentials, 3. press login, first try with incorrect
-      credentials, then with correct credentials
-    </Card>
-    <Card title="Expected result">
-      If credentials are incorrect, you should see message about it. If credentials are correct you
-      should be redirected to the dashboard.
-    </Card>
-  </Card>
-)
+  useEffect(() => {
+    getTestCases()
+  }, [])
 
-export default TestCase
+  if (testCases)
+    return testCases.map((testCase) => (
+      <Card title={testCase.name} subtitle={testCase.description}>
+        <Card title="Prerequisites">{testCase.prerequisites}</Card>
+        <Card title="Steps">{testCase.steps}</Card>
+        <Card title="Expected result">{testCase.expected}</Card>
+      </Card>
+    ))
+  return null
+}
+
+export default TestCases

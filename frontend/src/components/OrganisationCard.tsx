@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Organisation as OrganistionType } from '../../../types/organisation'
+import { AppContext } from '../contexts'
 
 const avatarSizeMap = (size: 'sm' | 'md' | 'lg') => {
   switch (size) {
@@ -59,16 +59,10 @@ const Modal = ({
 
 export const OrganisationCard = () => {
   const [showModal, setShowModal] = useState(false)
-  const [organisation, setOrganisation] = useState<OrganistionType>()
-
-  const getOrgData = async () => {
-    const res = await fetch('api/organisation/1')
-    const json: OrganistionType = await res.json()
-    setOrganisation(json)
-  }
+  const { organisation, getOrganisation } = useContext(AppContext)
 
   useEffect(() => {
-    getOrgData()
+    getOrganisation('1')
   }, [])
 
   if (organisation)

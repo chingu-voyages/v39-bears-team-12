@@ -5,10 +5,10 @@ export function createTest(req: Request, res: Response) {
   res.send('create new test')
 }
 
-export function getTestById(req: Request, res: Response) {
+export const getTestsByOrgId = (req: Request, res: Response) => {
   const { id } = req.params
-  const test = mock_tests.find((test) => test.id === id)
-  if (test) return res.send(JSON.stringify(test))
+  const tests = mock_tests[id]
+  if (tests) return res.send(JSON.stringify(tests))
 
   res.send('test not found')
 }
