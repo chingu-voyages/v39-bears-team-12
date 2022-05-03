@@ -11,6 +11,14 @@ const Tests1: Test[] = [
       ' If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
     prerequisites: 'You must have registered account with confirmed email address',
   },
+  {
+    id: '2',
+    name: 'Test radndom',
+    description: 'Some random test',
+    steps: ' Press random buttons on keyboard',
+    expected: ' App should be a mess',
+    prerequisites: 'You must have keyboard',
+  },
 ]
 
 export const mock_tests: { [key: string]: Test[] } = {
