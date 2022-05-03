@@ -10,8 +10,6 @@ const Login = () => {
       <h2 className="text-4xl px-4 ">Log In</h2>
       <form
         className="mt-10 space-y-8"
-        value={orgId}
-        onChange={(e) => setOrgId(e.target.value)}
         onSubmit={(e) => {
           e.preventDefault()
         }}
@@ -19,6 +17,8 @@ const Login = () => {
         <input
           className="w-full border rounded h-12 px-4 focus:outline-none"
           placeholder="Organisation id"
+          value={orgId}
+          onChange={(e) => setOrgId(e.target.value)}
         />
         <div>
           <div className="flex flex-col">
