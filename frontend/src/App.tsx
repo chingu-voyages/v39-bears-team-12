@@ -4,9 +4,9 @@ import { AppRoutes } from './routes'
 import './index.css'
 import { AppProvider } from './contexts'
 export const App = () => (
-  <AppProvider>
-    <Router>
+  <Router>
+    <AppProvider>
       <AppRoutes />
-    </Router>
-  </AppProvider>
+    </AppProvider>
+  </Router>
 )

@@ -5,8 +5,10 @@ import { ComponentExamples } from '../pages/ComponentExamples'
 import Login from '../pages/Login'
 import NotFound from '../pages/NotFound'
 import Register from '../pages/Register'
-import AdminLayout from '../utils/AdminLayout'
-import AuthLayout from '../utils/AuthLayout'
+import AdminLayout from '../layouts/AdminLayout'
+import AuthLayout from '../layouts/AuthLayout'
+import TestCases from '../pages/TestCases'
+import TestCase from '../pages/TestCase'
 
 export const AppRoutes = () => (
   <Routes>
@@ -16,6 +18,8 @@ export const AppRoutes = () => (
       <Route path="/organisation">
         <Route path=":id" element={<Organisation />} />
       </Route>
+      <Route path="/test-cases" element={<TestCases />} />
+      <Route path="/test-cases/:id" element={<TestCase />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/components" element={<ComponentExamples />} />
     </Route>

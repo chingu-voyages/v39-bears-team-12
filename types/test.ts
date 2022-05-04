@@ -3,7 +3,6 @@ export type Test = {
   name: string
   description?: string
   prerequisites?: string
-  steps?: string[]
+  steps?: string
   expected?: string
-  status: 'pass' | 'fail' | 'pending' | 'blocked' | 'retest'
 }

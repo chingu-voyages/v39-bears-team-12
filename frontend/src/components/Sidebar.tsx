@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AppContext } from '../contexts'
 import { navItems } from '../urls'
 
 const Sidebar = () => {
-  const logOut = () => {
-    alert('Log out')
-  }
+  const { handleLogOut } = useContext(AppContext)
+
   return (
-    <div className="relative bg-white dark:bg-gray-800">
+    <div className="fixed bg-white dark:bg-gray-800">
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className="w-72 h-screen">
           <div className="flex items-center justify-start mx-6 mt-10">
@@ -16,7 +16,7 @@ const Sidebar = () => {
           <nav className="mt-10 px-6 ">
             {navItems.map(({ name, path, Icon }) => (
               <Link
-                className="hover:text-orange flex items-center p-2 my-6 transition-colors duration-200 text-gray-600 rounded-lg capitalize"
+                className="hover:text-orange flex items-center p-2 my-6 transition-colors duration-200 text-gray-400 rounded-lg capitalize"
                 to={path}
                 key={name}
               >
@@ -27,9 +27,9 @@ const Sidebar = () => {
               </Link>
             ))}
             <Link
-              className="hover:text-orange flex items-center p-2 my-6 transition-colors duration-200 text-gray-600 rounded-lg capitalize"
+              className="hover:text-orange flex items-center p-2 my-6 transition-colors duration-200 text-gray-400 rounded-lg capitalize"
               to="#"
-              onClick={logOut}
+              onClick={handleLogOut}
             >
               <span className="text-lg font-normal">Log out</span>
             </Link>

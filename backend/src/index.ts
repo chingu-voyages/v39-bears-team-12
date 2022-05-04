@@ -12,6 +12,6 @@ app.use('/organisation', organisationRouter)
 app.use('/user', userRouter)
 app.use('/projects', projectRouter)
 app.use('/milestones', milestoneRouter)
-app.use('/test', testRouter)
+app.use('/testCases', testRouter)
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`))
