@@ -31,7 +31,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setOrganisation((org) => ({ ...org, ...updates }))
   }
 
-  
   const getTestCases = async () => {
     if (organisation) {
       const res = await fetch(`/api/testCases/${organisation.id}`)
