@@ -1,11 +1,6 @@
 import { Request, Response } from 'express'
 import { mock_users } from '../../../mocks/users'
 
-export function getUser(req: Request, res: Response) {
-  // This function retrieve user data from database and the project
-  return res.send('Hello User')
-}
-
 export function getUserById(req: Request, res: Response) {
   const { id } = req.params
   const user = mock_users.find((usr) => usr.id === id)
