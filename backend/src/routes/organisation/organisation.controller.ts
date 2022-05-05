@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { organisations_mock } from '../../../mocks/organisation'
+import Organisation from '../../models/organisations.model'
 
 export function getOrganisationById(req: Request, res: Response) {
   const { id } = req.params
@@ -8,3 +9,10 @@ export function getOrganisationById(req: Request, res: Response) {
 
   res.send('organisation not found')
 }
+
+// export async function updateOrganisation(req:Request, res:Response) {
+//   const { id } = req.params
+//   const updates = req.body
+//   const data = await Organisation.findByIdAndUpdate(id, updates)
+//   res.send(data)
+// }
