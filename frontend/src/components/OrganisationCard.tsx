@@ -37,7 +37,6 @@ export const Avatar = ({
 const Modal = ({
   name,
   description,
-  id,
   onClose,
 }: {
   name: string
@@ -49,7 +48,7 @@ const Modal = ({
     <Avatar letter="G" size="lg" />
     <div className="text-lg font-bold">{name}</div>
     <div className="text-md text-slate-600">{description}</div>
-    <Link to={`/organisation/${id}`} onClick={onClose}>
+    <Link to={`/organisation/${name}`} onClick={onClose}>
       <button className="rounded-full border-2 border-slate-500  py-1 px-5 text-slate-900 hover:bg-slate-50">
         Edit
       </button>
@@ -62,7 +61,7 @@ export const OrganisationCard = () => {
   const { organisation, getOrganisation } = useContext(AppContext)
 
   useEffect(() => {
-    getOrganisation('1')
+    getOrganisation(organisation.name)
   }, [])
 
   if (organisation)
