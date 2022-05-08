@@ -9,6 +9,23 @@ export async function getOrganisationByName(req: Request, res: Response) {
   res.status(404).send({ error: 'Organisation not found' })
 }
 
+export async function createOrganisation(req: Request, res: Response) {
+  const organisation = req.body.organisation
+  const existing = await Organisation.find({ name: organisation })
+  if (existing.length > 0) {
+    return res.send({ success: false, message: 'Organisation already exists' })
+  }
+
+  console.log(`Adding new organisation: ${organisation}`)
+  const created = await Organisation.create({
+    name: organisation,
+    description: '',
+    users: [],
+    projects: [],
+  })
+  return res.send({ success: true, data: created, message: 'Organisation created' })
+}
+
 // export async function updateOrganisation(req:Request, res:Response) {
 //   const { id } = req.params
 //   const updates = req.body

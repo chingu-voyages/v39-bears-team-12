@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Organisation as OrganisationType } from '../../../types/organisation'
 import { Test } from '../../../types/test'
 
@@ -8,6 +8,7 @@ type AppContextType = {
   testCases: Test[]
   error: string
   getOrganisation: (name: string) => Promise<void>
+  createOrganisation: (name: string) => Promise<void>
   updateOrganisation: (updates: Partial<OrganisationType>) => void
   getTestCases: () => void
   handleLogOut: () => void
@@ -22,6 +23,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [testCases, setTestCases] = useState<Test[]>()
   const [error, setError] = useState<string>()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    setError(undefined)
+  }, [location])
 
   const getOrganisation = async (name: string) => {
     try {
@@ -41,6 +47,22 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setOrganisation((org) => ({ ...org, ...updates }))
   }
 
+  const createOrganisation = async (organisation: string) => {
+    const res = await fetch('/api/organisation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ organisation }),
+    })
+    const json = await res.json()
+    console.log(json)
+    if (!json.success) {
+      setError(json.message)
+      return
+    }
+    setOrganisation(json.data)
+    navigate('/home')
+  }
+
   const getTestCases = async () => {
     if (organisation) {
       const res = await fetch(`/api/testCases/${organisation.id}`)
@@ -58,7 +80,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const org = await getOrganisation(name)
       if (!org) {
-        setError('Organisation not found. Try Google 😉')
+        setError('Organisation not found')
       } else {
         setOrganisation(org)
         setIsLoggedIn(true)
@@ -80,6 +102,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         organisation,
         error,
         getOrganisation,
+        createOrganisation,
         updateOrganisation,
         testCases,
         getTestCases,
