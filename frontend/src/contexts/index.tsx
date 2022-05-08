@@ -6,7 +6,8 @@ import { Test } from '../../../types/test'
 type AppContextType = {
   organisation: OrganisationType
   testCases: Test[]
-  getOrganisation: (id: string) => Promise<void>
+  error: string
+  getOrganisation: (name: string) => Promise<void>
   updateOrganisation: (updates: Partial<OrganisationType>) => void
   getTestCases: () => void
   handleLogOut: () => void
@@ -19,12 +20,21 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [organisation, setOrganisation] = useState<OrganisationType>()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [testCases, setTestCases] = useState<Test[]>()
+  const [error, setError] = useState<string>()
   const navigate = useNavigate()
 
-  const getOrganisation = async (id: string) => {
-    const res = await fetch(`/api/organisation/${id}`)
-    const json = await res.json()
-    setOrganisation(json)
+  const getOrganisation = async (name: string) => {
+    try {
+      const res = await fetch(`/api/organisation/${name}`)
+      if (res.status === 404) {
+        return undefined
+      } else {
+        const json = await res.json()
+        return json
+      }
+    } catch (e) {
+      throw new Error('Organisation not found')
+    }
   }
 
   const updateOrganisation = (updates: Partial<OrganisationType>) => {
@@ -44,10 +54,19 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setIsLoggedIn(false)
   }
 
-  const handleLogin = async (id: string) => {
-    console.log('sdlfknersf')
-    await getOrganisation(id)
-    setIsLoggedIn(true)
+  const handleLogin = async (name: string) => {
+    try {
+      const org = await getOrganisation(name)
+      if (!org) {
+        setError('Organisation not found. Try Google 😉')
+      } else {
+        setOrganisation(org)
+        setIsLoggedIn(true)
+        setError(undefined)
+      }
+    } catch (e) {
+      console.log(e, '!!!!')
+    }
   }
 
   useEffect(() => {
@@ -59,6 +78,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     <AppContext.Provider
       value={{
         organisation,
+        error,
         getOrganisation,
         updateOrganisation,
         testCases,

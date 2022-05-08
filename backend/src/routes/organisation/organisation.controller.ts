@@ -1,10 +1,17 @@
 import { Request, Response } from 'express'
-import { organisations_mock } from '../../../mocks/organisation'
+import Organisation from '../../models/organisations.model'
 
-export function getOrganisationById(req: Request, res: Response) {
-  const { id } = req.params
-  const organisation = organisations_mock.find((org) => org.id === id)
-  if (organisation) return res.send(JSON.stringify(organisation))
+export async function getOrganisationByName(req: Request, res: Response) {
+  const { name } = req.params
 
-  res.send('organisation not found')
+  const organisation = await Organisation.findOne({ name })
+  if (organisation) return res.send(organisation)
+  res.status(404).send({ error: 'Organisation not found' })
 }
+
+// export async function updateOrganisation(req:Request, res:Response) {
+//   const { id } = req.params
+//   const updates = req.body
+//   const data = await Organisation.findByIdAndUpdate(id, updates)
+//   res.send(data)
+// }
