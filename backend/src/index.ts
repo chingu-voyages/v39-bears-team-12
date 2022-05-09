@@ -1,6 +1,7 @@
 import express = require('express')
 import mongoose from 'mongoose'
 import { checkDbAndSeed } from '../mocks/seeds'
+import bodyParser from 'body-parser'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -21,6 +22,13 @@ mongoose
   .then(() => console.log('Connected to the mongo!'))
   .catch((e) => console.log(e))
 
+app.use(bodyParser.json()) // to support JSON-encoded bodies
+app.use(
+  bodyParser.urlencoded({
+    // to support URL-encoded bodies
+    extended: true,
+  })
+)
 app.use('/organisation', organisationRouter)
 app.use('/user', userRouter)
 app.use('/projects', projectRouter)

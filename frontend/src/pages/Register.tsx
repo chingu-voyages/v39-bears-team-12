@@ -1,28 +1,27 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { AppContext } from '../contexts'
 
-const Register = () => (
-  <div className="bg-white p-5 max-w-lg mx-auto rounded shadow-sm">
-    <h2 className="text-4xl px-4 ">Create account</h2>
-    <form className="mt-10 space-y-8">
+const Register = () => {
+  const [organisation, setOrganisation] = useState('')
+  const { createOrganisation, error } = useContext(AppContext)
+
+  return (
+    <div className="bg-white p-5 max-w-lg mx-auto rounded shadow-sm space-y-5">
+      <h2 className="text-4xl px-4 ">Create account</h2>
+
       <input
         className="w-full border rounded h-12 px-4 focus:outline-none"
-        placeholder="Email adress "
-        type="email"
+        placeholder="Organisation name"
+        value={organisation}
+        onChange={(e) => setOrganisation(e.target.value)}
       />
-
-      <div className="flex items-center ">
-        <input
-          className="w-full border rounded h-12 px-4 focus:outline-none -mr-7"
-          placeholder="Password"
-          type="password"
-        />
-      </div>
+      <div className="text-red-400 text-sm text-center">{error}</div>
       <div>
         <div className="flex flex-col">
           <button
-            className="bg-orange text-sm active:bg-gray-700 cursor-pointer font-regular text-white px-4 py-2 rounded uppercase mb-5"
-            type="submit"
+            className="bg-orange-500 text-sm active:bg-gray-700 cursor-pointer font-regular text-white px-4 py-2 rounded uppercase mb-5"
+            onClick={async () => await createOrganisation(organisation)}
           >
             Register
           </button>
@@ -35,8 +34,8 @@ const Register = () => (
           </p>
         </div>
       </div>
-    </form>
-  </div>
-)
+    </div>
+  )
+}
 
 export default Register
