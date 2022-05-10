@@ -5,21 +5,24 @@ import { AppContext } from '../contexts'
 const TestCases = () => {
   const { organisation } = useContext(AppContext)
 
-  return (
-    <div>
-      <div>Test cases</div>
-      {!organisation.testCases.length ? (
-        <div>No test cases found</div>
-      ) : (
-        organisation.testCases.map((testCase, i) => (
-          <Card key={i} title={testCase.name} subtitle={testCase.description} />
-        ))
-      )}
-      <div className="mt-3">
-        <CreateTest />
+  if (organisation) {
+    return (
+      <div>
+        <div>Test cases</div>
+        {!organisation?.testCases.length ? (
+          <div>No test cases found</div>
+        ) : (
+          organisation.testCases.map((testCase, i) => (
+            <Card key={i} title={testCase.name} subtitle={testCase.description} />
+          ))
+        )}
+        <div className="mt-3">
+          <CreateTest />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
+  return null
 }
 
 export default TestCases
