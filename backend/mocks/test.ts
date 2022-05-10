@@ -13,7 +13,7 @@ const Tests1: Test[] = [
   },
   {
     id: '2',
-    name: 'Test radndom',
+    name: 'Test random',
     description: 'Some random test',
     steps: ' Press random buttons on keyboard',
     expected: ' App should be a mess',

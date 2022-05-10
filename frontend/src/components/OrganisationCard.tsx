@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { forwardRef, LegacyRef, useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../contexts'
+import useOnClickOutside from '../hooks/useOnClickOutside'
 
 const avatarSizeMap = (size: 'sm' | 'md' | 'lg') => {
   switch (size) {
@@ -34,31 +35,43 @@ export const Avatar = ({
   </div>
 )
 
-const Modal = ({
-  name,
-  description,
-  onClose,
-}: {
-  name: string
-  description: string
-  id: string
-  onClose: () => void
-}) => (
-  <div className="w-[400px] absolute top-10 right-10 rounded-lg border-2 bg-white border-slate-200 shadow-lg p-6 flex flex-col items-center gap-4">
-    <Avatar letter="G" size="lg" />
-    <div className="text-lg font-bold">{name}</div>
-    <div className="text-md text-slate-600">{description}</div>
-    <Link to={`/organisation/${name}`} onClick={onClose}>
-      <button className="rounded-full border-2 border-slate-500  py-1 px-5 text-slate-900 hover:bg-slate-50">
-        Edit
-      </button>
-    </Link>
-  </div>
+const Modal = forwardRef(
+  (
+    {
+      name,
+      description,
+      onClose,
+    }: {
+      name: string
+      description: string
+      id: string
+      onClose: () => void
+    },
+    ref: LegacyRef<HTMLDivElement>
+  ) => (
+    <div
+      ref={ref}
+      className="w-[400px] absolute top-10 right-10 rounded-lg border-2 bg-white border-slate-200 shadow-lg p-6 flex flex-col items-center gap-4"
+    >
+      <Avatar letter="G" size="lg" />
+      <div className="text-lg font-bold">{name}</div>
+      <div className="text-md text-slate-600">{description}</div>
+      <Link to={`/organisation/${name}`} onClick={onClose}>
+        <button className="rounded-full border-2 border-slate-500  py-1 px-5 text-slate-900 hover:bg-slate-50">
+          Edit
+        </button>
+      </Link>
+    </div>
+  )
 )
 
 export const OrganisationCard = () => {
   const [showModal, setShowModal] = useState(false)
   const { organisation, getOrganisation } = useContext(AppContext)
+
+  const ref = useRef()
+
+  useOnClickOutside(ref, () => setShowModal(false))
 
   useEffect(() => {
     getOrganisation(organisation.name)
@@ -78,6 +91,7 @@ export const OrganisationCard = () => {
               description={organisation.description}
               id={organisation.id}
               onClose={() => setShowModal(false)}
+              ref={ref}
             />
           )}
         </div>
