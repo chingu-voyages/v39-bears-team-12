@@ -1,16 +1,9 @@
 import { Schema, model } from 'mongoose'
 
-interface IUser {
-  name: string
-  description: string
-  steps: any
-  expected: any
-  prerequisites: any
-}
-
 const testSchema = new Schema({
   name: String,
   description: String,
+  status: String,
   steps: [],
   expected: [],
   prerequisite: [],

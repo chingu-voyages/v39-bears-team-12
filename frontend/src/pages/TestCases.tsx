@@ -1,25 +1,27 @@
-import React, { useContext, useEffect } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import React, { useContext } from 'react'
 import Card from '../components/Card'
+import { CreateTest } from '../components/createTest'
 import { AppContext } from '../contexts'
 const TestCases = () => {
-  const { getTestCases, testCases } = useContext(AppContext)
+  const { organisation } = useContext(AppContext)
 
-  useEffect(() => {
-    getTestCases()
-  }, [])
-
-  if (testCases)
+  if (organisation) {
     return (
-      <>
-        {testCases.map((testCase) => (
-          <Link to={testCase.id} key={testCase.id}>
-            <Card title={testCase.name} />
-          </Link>
-        ))}
-        <Outlet />
-      </>
+      <div>
+        <div>Test cases</div>
+        {!organisation?.testCases.length ? (
+          <div>No test cases found</div>
+        ) : (
+          organisation.testCases.map((testCase, i) => (
+            <Card key={i} title={testCase.name} subtitle={testCase.description} />
+          ))
+        )}
+        <div className="mt-3">
+          <CreateTest />
+        </div>
+      </div>
     )
+  }
   return null
 }
 

@@ -22,6 +22,7 @@ export async function createOrganisation(req: Request, res: Response) {
     description: '',
     users: [],
     projects: [],
+    testCases: [],
   })
   return res.send({ success: true, data: created, message: 'Organisation created' })
 }

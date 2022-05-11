@@ -1,8 +1,8 @@
+import { v4 as uuid } from 'uuid'
 // import models
 import User from '../src/models/users.model'
 import Project from '../src/models/projects.model'
 import Organisation from '../src/models/organisations.model'
-import Test from '../src/models/tests.model'
 
 async function seedDb() {
   await User.create({
@@ -29,24 +29,26 @@ async function seedDb() {
   await Organisation.create({
     name: 'Google',
     description: 'Mega Corporation with unlimited power',
-    users: await User.find({ organisation: 'Google' }),
-    projects: await Project.find({}),
-  })
-
-  await Test.create({
-    name: 'Super duper test',
-    description: 'My super duper test',
-    steps: [
-      'go to the login page',
-      'enter your credentials',
-      'press login',
-      'first try with incorrect credentials',
-      'then with correct credentials',
+    users: [],
+    projects: [],
+    tests: [
+      {
+        id: uuid(),
+        name: 'Super duper test',
+        description: 'My super duper test',
+        steps: [
+          'go to the login page',
+          'enter your credentials',
+          'press login',
+          'first try with incorrect credentials',
+          'then with correct credentials',
+        ],
+        expected: [
+          'If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
+        ],
+        prerequisites: ['You must have registered account with confirmed email address'],
+      },
     ],
-    expected: [
-      'If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
-    ],
-    prerequisites: ['You must have registered account with confirmed email address'],
   })
 }
 

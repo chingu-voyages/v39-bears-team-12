@@ -5,14 +5,14 @@ import { Test } from '../../../types/test'
 
 type AppContextType = {
   organisation: OrganisationType
-  testCases: Test[]
   error: string
   getOrganisation: (name: string) => Promise<void>
   createOrganisation: (name: string) => Promise<void>
   updateOrganisation: (updates: Partial<OrganisationType>) => void
-  getTestCases: () => void
+  // getTestCases: () => void
   handleLogOut: () => void
   handleLogin: (id: string) => void
+  createTestCase: (testCase: Test) => void
 }
 
 export const AppContext = createContext({} as AppContextType)
@@ -20,7 +20,6 @@ export const AppContext = createContext({} as AppContextType)
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [organisation, setOrganisation] = useState<OrganisationType>()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [testCases, setTestCases] = useState<Test[]>()
   const [error, setError] = useState<string>()
   const navigate = useNavigate()
   const location = useLocation()
@@ -63,11 +62,24 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     navigate('/home')
   }
 
-  const getTestCases = async () => {
-    if (organisation) {
-      const res = await fetch(`/api/testCases/${organisation.id}`)
-      const json = await res.json()
-      setTestCases(json)
+  // const getTestCases = async () => {
+  //   if (organisation) {
+  //     const res = await fetch(`/api/testCases/${organisation.id}`)
+  //     const json = await res.json()
+  //   }
+  // }
+
+  const createTestCase = async ({ name, description, id }: Test) => {
+    const res = await fetch('/api/testCase', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, description, testId: id, orgId: organisation.id }),
+    })
+    const json = await res.json()
+    if (!json.success) {
+      setError(json.message)
+    } else {
+      setOrganisation((org) => ({ ...org, testCases: [...org.testCases, json.data as Test] }))
     }
   }
 
@@ -104,10 +116,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         getOrganisation,
         createOrganisation,
         updateOrganisation,
-        testCases,
-        getTestCases,
+        // testCases,
+        // getTestCases,
         handleLogOut,
         handleLogin,
+        createTestCase,
       }}
     >
       {children}

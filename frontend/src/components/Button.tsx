@@ -8,7 +8,7 @@ type ButtonProps = {
   styles?: string
 }
 
-const primary = 'bg-indigo-500 hover:bg-indigo-700 text-white font-bold'
+const primary = 'bg-orange-500 hover:bg-orange-700 text-white font-bold'
 const secondary = 'border-2 border-indigo-100 hover:border-indigo-200 text-indigo-500'
 
 const getVariant = (variant: ButtonProps['variant']) => {
