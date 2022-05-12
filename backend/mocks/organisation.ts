@@ -9,5 +9,6 @@ export const organisations_mock: Organisation[] = [
     description: 'Mega Corporation with unlimited power',
     users: mock_users,
     projects,
+    testCases: [],
   },
 ]

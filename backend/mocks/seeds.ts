@@ -28,10 +28,10 @@ async function seedDb() {
 
   await Organisation.create({
     name: 'Google',
-    description: 'Mega Corporation with unlimited power',
+    description: 'Mega Corporation with unlimited poop',
     users: [],
     projects: [],
-    tests: [
+    testCases: [
       {
         id: uuid(),
         name: 'Super duper test',
@@ -47,6 +47,24 @@ async function seedDb() {
           'If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
         ],
         prerequisites: ['You must have registered account with confirmed email address'],
+        status: 'passed',
+      },
+      {
+        id: uuid(),
+        name: 'Another Super duper test',
+        description: 'My super duper test that failed :(',
+        steps: [
+          'go to the login page',
+          'enter your credentials',
+          'press login',
+          'first try with incorrect credentials',
+          'then with correct credentials',
+        ],
+        expected: [
+          'If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
+        ],
+        prerequisites: ['You must have registered account with confirmed email address'],
+        status: 'failed',
       },
     ],
   })

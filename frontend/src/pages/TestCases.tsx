@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import Card from '../components/Card'
 import { CreateTest } from '../components/createTest'
+import { Status } from '../components/Status'
 import { AppContext } from '../contexts'
 const TestCases = () => {
-  const { organisation } = useContext(AppContext)
+  const { organisation, updateTestCaseStatus } = useContext(AppContext)
 
   if (organisation) {
     return (
@@ -13,7 +14,14 @@ const TestCases = () => {
           <div>No test cases found</div>
         ) : (
           organisation.testCases.map((testCase, i) => (
-            <Card key={i} title={testCase.name} subtitle={testCase.description} />
+            <Card key={i} title={testCase.name} subtitle={testCase.description}>
+              <Status
+                status={testCase.status}
+                onUpdate={async (status) => {
+                  await updateTestCaseStatus({ id: testCase.id, status })
+                }}
+              />
+            </Card>
           ))
         )}
         <div className="mt-3">
