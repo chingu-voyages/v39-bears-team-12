@@ -18,8 +18,6 @@ const PORT = 4000
 
 checkDbAndSeed()
 
-console.log(process.env.MONGODB_URL)
-
 mongoose
   .connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/testTracker')
   .then(() => console.log('Connected to the mongo!'))
