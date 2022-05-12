@@ -14,6 +14,7 @@ type AppContextType = {
   handleLogin: (id: string) => void
   createTestCase: (testCase: Test) => void
   updateTestCaseStatus: (data: { id: string; status: TStatus }) => void
+  refreshOrg: () => Promise<void>
 }
 
 export const AppContext = createContext({} as AppContextType)
@@ -42,6 +43,15 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       throw new Error('Organisation not found')
     }
   }
+{
+  const refreshOrg = async () => {
+    try {
+      const org = await getOrganisation(organisation.name)
+      setOrganisation(org)
+    } catch(e) {
+      setError(e)
+    }
+  }
 
   const updateOrganisation = (updates: Partial<OrganisationType>) => {
     setOrganisation((org) => ({ ...org, ...updates }))
@@ -64,10 +74,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const createTestCase = async ({ name, description, id, status }: Test) => {
+    console.log(organisation)
     const res = await fetch('/api/testCase', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, description, status, testId: id, orgId: organisation.id }),
+      body: JSON.stringify({ name, description, status, testId: id, orgId: organisation._id }),
     })
     const json = await res.json()
     if (!json.success) {
@@ -81,7 +92,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const res = await fetch('/api/testCase/status', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, status, orgId: organisation.id }),
+      body: JSON.stringify({ id, status, orgId: organisation._id }),
     })
     const json = await res.json()
     if (!json.success) {
@@ -135,6 +146,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         handleLogin,
         createTestCase,
         updateTestCaseStatus,
+        refreshOrg,
       }}
     >
       {children}

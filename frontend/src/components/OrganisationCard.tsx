@@ -87,9 +87,9 @@ export const OrganisationCard = () => {
           />
           {showModal && (
             <Modal
+              id={organisation._id}
               name={organisation.name}
               description={organisation.description}
-              id={organisation.id}
               onClose={() => setShowModal(false)}
               ref={ref}
             />
