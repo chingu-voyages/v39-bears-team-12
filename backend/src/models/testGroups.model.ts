@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose'
 const testGroupSchema = new Schema({
   name: String,
   description: String,
-  tests: []
+  tests: Array
 })
 
 const TestGroup = model('TestGroup', testGroupSchema)
