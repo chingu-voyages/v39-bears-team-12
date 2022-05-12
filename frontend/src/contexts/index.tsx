@@ -64,7 +64,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       body: JSON.stringify({ organisation }),
     })
     const json = await res.json()
-    console.log(json)
     if (!json.success) {
       setError(json.message)
       return

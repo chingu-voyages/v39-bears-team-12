@@ -27,7 +27,9 @@ const TestCases = () => {
         )}
         <div className="mt-3 flex gap-2">
           <CreateTest />
-          <Button onClick={async () => await refreshOrg()}>Refresh</Button>
+          <Button variant="secondary" onClick={async () => await refreshOrg()}>
+            Refresh
+          </Button>
         </div>
       </div>
     )
