@@ -5,7 +5,8 @@ const organisatonSchema = new Schema({
   description: String,
   users: Array,
   projects: Object,
-  testCases: Array,
+  testGroups: Array,
+  testCases: Array
 })
 
 const Organisation = model('Organisation', organisatonSchema)
