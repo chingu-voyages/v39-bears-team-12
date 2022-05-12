@@ -43,12 +43,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       throw new Error('Organisation not found')
     }
   }
-{
+
   const refreshOrg = async () => {
     try {
       const org = await getOrganisation(organisation.name)
       setOrganisation(org)
-    } catch(e) {
+    } catch (e) {
       setError(e)
     }
   }
