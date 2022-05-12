@@ -5,4 +5,7 @@ export type Test = {
   prerequisites?: string
   steps?: string
   expected?: string
+  status: TStatus
 }
+
+export type TStatus = 'passed' | 'failed' | 'pending'

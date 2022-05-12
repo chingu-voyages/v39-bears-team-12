@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Organisation as OrganisationType } from '../../../types/organisation'
-import { Test } from '../../../types/test'
+import { Test, TStatus } from '../../../types/test'
 
 type AppContextType = {
   organisation: OrganisationType
@@ -13,6 +13,7 @@ type AppContextType = {
   handleLogOut: () => void
   handleLogin: (id: string) => void
   createTestCase: (testCase: Test) => void
+  updateTestCaseStatus: (data: { id: string; status: TStatus }) => void
 }
 
 export const AppContext = createContext({} as AppContextType)
@@ -62,24 +63,36 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     navigate('/home')
   }
 
-  // const getTestCases = async () => {
-  //   if (organisation) {
-  //     const res = await fetch(`/api/testCases/${organisation.id}`)
-  //     const json = await res.json()
-  //   }
-  // }
-
-  const createTestCase = async ({ name, description, id }: Test) => {
+  const createTestCase = async ({ name, description, id, status }: Test) => {
     const res = await fetch('/api/testCase', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, description, testId: id, orgId: organisation.id }),
+      body: JSON.stringify({ name, description, status, testId: id, orgId: organisation.id }),
     })
     const json = await res.json()
     if (!json.success) {
       setError(json.message)
     } else {
       setOrganisation((org) => ({ ...org, testCases: [...org.testCases, json.data as Test] }))
+    }
+  }
+
+  const updateTestCaseStatus = async ({ id, status }: { id: string; status: TStatus }) => {
+    const res = await fetch('/api/testCase/status', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, status, orgId: organisation.id }),
+    })
+    const json = await res.json()
+    if (!json.success) {
+      setError(json.message)
+    } else {
+      setOrganisation((org) => ({
+        ...org,
+        testCases: org.testCases.map((testCase) =>
+          testCase.id === json.data.id ? json.data : testCase
+        ),
+      }))
     }
   }
 
@@ -121,6 +134,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         handleLogOut,
         handleLogin,
         createTestCase,
+        updateTestCaseStatus,
       }}
     >
       {children}

@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
+import { TStatus } from '../../../types/test'
 import { AppContext } from '../contexts'
 import useOnClickOutside from '../hooks/useOnClickOutside'
 import { Button } from './Button'
+import { Status } from './Status'
 
 export const CreateTest = () => {
   const [showModal, setShowModal] = useState(false)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
+  const [status, setStatus] = useState<TStatus>('pending')
   const [isLoading, setIsLoading] = useState(false)
 
   const { createTestCase } = useContext(AppContext)
@@ -19,12 +22,13 @@ export const CreateTest = () => {
     if (!showModal) {
       setName('')
       setDescription('')
+      setStatus('pending')
     }
   }, [showModal])
 
   const handleCreateTestCase = async () => {
     setIsLoading(true)
-    await createTestCase({ id: uuid(), name, description })
+    await createTestCase({ id: uuid(), name, description, status })
     setIsLoading(false)
     setShowModal(false)
   }
@@ -67,6 +71,9 @@ export const CreateTest = () => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
+                  </div>
+                  <div>
+                    <Status status={status} onUpdate={(status) => setStatus(status)} />
                   </div>
                 </div>
               </div>

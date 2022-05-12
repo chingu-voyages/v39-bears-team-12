@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
+import { TStatus } from '../../../types/test'
 import useOnClickOutside from '../hooks/useOnClickOutside'
-export type TStatus = 'passed' | 'failed' | 'pending'
 
 const colorMap = {
   passed: 'bg-green-500',

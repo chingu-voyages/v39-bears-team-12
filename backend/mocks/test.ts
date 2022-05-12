@@ -10,6 +10,7 @@ const Tests1: Test[] = [
     expected:
       ' If credentials are incorrect, you should see message about it. If credentials are correct you should be redirected to the dashboard.',
     prerequisites: 'You must have registered account with confirmed email address',
+    status: 'passed',
   },
   {
     id: '2',
@@ -18,6 +19,7 @@ const Tests1: Test[] = [
     steps: ' Press random buttons on keyboard',
     expected: ' App should be a mess',
     prerequisites: 'You must have keyboard',
+    status: 'pending',
   },
 ]
 
