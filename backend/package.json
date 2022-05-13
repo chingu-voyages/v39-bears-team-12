@@ -6,7 +6,9 @@
   "scripts": {
     "server": "nodemon -e ts --exec npx ts-node src/index.ts",
     "lint": "eslint src/**",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist & tsc",
+    "serve": "node dist/backend/src/index.js"
   },
   "author": "",
   "license": "ISC",

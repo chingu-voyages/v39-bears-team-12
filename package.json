@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "A test tracking application that allows users to run and track tests through a UI",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "server": "npm run server --workspace=backend",
-    "client": "npm start --workspace=frontend",
+    "client": "npm start --workspace=frontend ",
     "lint:client": "npm run lint --workspace=frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:server": "npm run build --workspace=backend",
+    "build:client": "npm run build --workspace=frontend",
+    "build": "concurrently \"npm run build:server\" \"npm run build:client\"",
+    "serve": "npm run serve --workspace=backend",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +42,7 @@
   },
   "workspaces": [
     "backend",
-    "frontend"
+    "frontend",
+    "types"
   ]
 }

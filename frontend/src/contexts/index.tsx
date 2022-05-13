@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { Organisation as OrganisationType } from '../../../types/organisation'
-import { Test, TStatus } from '../../../types/test'
+import { Organisation as OrganisationType } from '@test-tracker/types/organisation'
+import { Test, TStatus } from '@test-tracker/types/test'
 
 type AppContextType = {
   organisation: OrganisationType
@@ -16,6 +16,8 @@ type AppContextType = {
   updateTestCaseStatus: (data: { id: string; status: TStatus }) => void
   refreshOrg: () => Promise<void>
 }
+
+const isProd = process.env.NODE_ENV === 'production'
 
 export const AppContext = createContext({} as AppContextType)
 
@@ -32,7 +34,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getOrganisation = async (name: string) => {
     try {
-      const res = await fetch(`/api/organisation/${name}`)
+      const res = await fetch(`${!isProd ? '/api' : ''}/organisation/${name}`)
       if (res.status === 404) {
         return undefined
       } else {
@@ -58,7 +60,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const createOrganisation = async (organisation: string) => {
-    const res = await fetch('/api/organisation', {
+    const res = await fetch(`${!isProd ? '/api' : ''}/organisation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ organisation }),
@@ -74,7 +76,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   const createTestCase = async ({ name, description, id, status }: Test) => {
     console.log(organisation)
-    const res = await fetch('/api/testCase', {
+    const res = await fetch(`${!isProd ? '/api' : ''}/testCase`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, description, status, testId: id, orgId: organisation._id }),
@@ -88,7 +90,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const updateTestCaseStatus = async ({ id, status }: { id: string; status: TStatus }) => {
-    const res = await fetch('/api/testCase/status', {
+    const res = await fetch(`${!isProd ? '/api' : ''}/testCase/status`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, status, orgId: organisation._id }),
