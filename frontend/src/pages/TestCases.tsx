@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
+import { Button } from '../components/Button'
 import Card from '../components/Card'
 import { CreateTest } from '../components/createTest'
 import { Status } from '../components/Status'
 import { AppContext } from '../contexts'
 const TestCases = () => {
-  const { organisation, updateTestCaseStatus } = useContext(AppContext)
+  const { organisation, updateTestCaseStatus, refreshOrg } = useContext(AppContext)
 
   if (organisation) {
     return (
@@ -24,8 +25,11 @@ const TestCases = () => {
             </Card>
           ))
         )}
-        <div className="mt-3">
+        <div className="mt-3 flex gap-2">
           <CreateTest />
+          <Button variant="secondary" onClick={async () => await refreshOrg()}>
+            Refresh
+          </Button>
         </div>
       </div>
     )
