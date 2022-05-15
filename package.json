@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "server": "npm run server --workspace=backend",
-    "client": "npm start --workspace=frontend ",
+    "client": "npm run dev --workspace=frontend ",
     "lint:client": "npm run lint --workspace=frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build:server": "npm run build --workspace=backend",
