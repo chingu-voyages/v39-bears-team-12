@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import Organisation from '../../models/organisations.model'
-import { mock_tests } from '../../../mocks/test'
-import { Test } from '../../../../types/test'
+import { Test } from '@test-tracker/types/test'
 
 export async function createTest(req: Request, res: Response) {
   const organisation = await Organisation.findById(req.body.orgId)
@@ -54,12 +53,4 @@ export const updateTestStatus = async (req: Request, res: Response) => {
   } else {
     res.status(501).send({ success: false, message: 'Unable to create a new test case' })
   }
-}
-
-export const getTestsByOrgId = (req: Request, res: Response) => {
-  const { id } = req.params
-  const tests = mock_tests[id]
-  if (tests) return res.send(JSON.stringify(tests))
-
-  res.send('test not found')
 }

@@ -2,6 +2,7 @@ import express = require('express')
 import mongoose from 'mongoose'
 import { checkDbAndSeed } from '../mocks/seeds'
 import bodyParser from 'body-parser'
+import path from 'path'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -15,8 +16,11 @@ import { testGroupRouter } from './routes/testGroups/testGroups.router'
 
 const app = express()
 const PORT = 4000
+const root = path.join(__dirname, '../../../../frontend/dist')
 
 checkDbAndSeed()
+
+app.use(express.static(root))
 
 mongoose
   .connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/testTracker')

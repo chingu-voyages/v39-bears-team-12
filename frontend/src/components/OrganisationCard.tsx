@@ -1,4 +1,4 @@
-import React, { forwardRef, LegacyRef, useContext, useEffect, useRef, useState } from 'react'
+import React, { forwardRef, LegacyRef, useContext, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../contexts'
 import useOnClickOutside from '../hooks/useOnClickOutside'
@@ -67,15 +67,11 @@ const Modal = forwardRef(
 
 export const OrganisationCard = () => {
   const [showModal, setShowModal] = useState(false)
-  const { organisation, getOrganisation } = useContext(AppContext)
+  const { organisation } = useContext(AppContext)
 
   const ref = useRef()
 
   useOnClickOutside(ref, () => setShowModal(false))
-
-  useEffect(() => {
-    getOrganisation(organisation.name)
-  }, [])
 
   if (organisation)
     return (

@@ -5,9 +5,9 @@ import Card from '../components/Card'
 import { AppContext } from '../contexts'
 const TestCase = () => {
   const { id } = useParams()
-  const { testCases } = useContext(AppContext)
+  const { organisation } = useContext(AppContext)
   const [selectedTestCase, setSelectedTestCase] = useState<Test>()
-  useEffect(() => setSelectedTestCase(testCases.find((t) => t.id === id)), [])
+  useEffect(() => setSelectedTestCase(organisation.testCases.find((t) => t.id === id)), [])
   if (selectedTestCase)
     return (
       <>

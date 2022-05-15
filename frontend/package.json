@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "parcel build src/index.html",
+    "dev": "NODE_ENV=development parcel src/index.html --open",
+    "build": "rm -rf ./dist & parcel build src/index.html",
     "lint": "eslint src/**/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,6 +15,7 @@
     "autoprefixer": "^10.4.4",
     "parcel": "^2.5.0",
     "postcss": "^8.4.12",
+    "process": "^0.11.10",
     "tailwindcss": "^3.0.23"
   },
   "dependencies": {

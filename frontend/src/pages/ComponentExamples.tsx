@@ -1,6 +1,7 @@
+import { TStatus } from '@test-tracker/types/test'
 import React, { useState } from 'react'
 import { Button } from '../components/Button'
-import { Status, TStatus } from '../components/Status'
+import { Status } from '../components/Status'
 
 const StatusComponent = () => {
   const [statuses, setStatuses] = useState(['passed', 'failed', 'pending'])
