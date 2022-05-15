@@ -16,7 +16,6 @@ type AppContextType = {
   updateTestCaseStatus: (data: { id: string; status: TStatus }) => void
   refreshOrg: () => Promise<void>
 }
-
 const isProd = process.env.NODE_ENV === 'production'
 
 export const AppContext = createContext({} as AppContextType)
